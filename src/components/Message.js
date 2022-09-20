@@ -10,19 +10,35 @@ function Message() {
     // console.log(messageValue);
     // console.log(messageList);
 
-    const submitHandler = () => {
-        // messageList.push(authorValue, messageValue);
-        setMessageList([authorValue, messageValue]); // разобраться, как запушить данные в массив
-        console.log(messageList);
+    const submitHandler = (event) => {
+        event.preventDefault();
+        setMessageList(prevState => [...prevState, {
+            id: getArrayId(prevState),
+            text: messageValue,
+            author: authorValue
+        }]);
         setMessageValue('');
         setAuthorValue('');
+
+    }
+
+    function getArrayId(array) {
+        return array.length ? array[array.length - 1].id + 1 : 0;
     }
 
     const ref = useRef(null);
 
     useEffect(() => {
         setTimeout(() => {
-            console.log('Ответ робота с задержкой!')
+            const lastAuthor = messageList[messageList.length - 1];
+            if (lastAuthor && lastAuthor.author) {
+                setMessageList(prevState => [
+                    ...prevState, {
+                        id: getArrayId(prevState),
+                        text:  `Сообщение автора ${lastAuthor.author} отправлено`
+                    }
+                ])
+            }
 
         }, "3000")
 
@@ -32,20 +48,23 @@ function Message() {
         <div>
             <h1> Введите сообщение </h1>
 
-            <label> Сообщение </label>
-            <input type="text" value={messageValue} onInput={(event) => setMessageValue(event.target.value)}/>
-            <label> Автор </label>
-            <input type="text" value={authorValue} onInput={(event) => setAuthorValue(event.target.value)}/>
-            {/*<button onClick={() => setMessageList([messageValue, authorValue])}> Send</button>*/}
-            <button onClick={submitHandler}> Send</button>
+            <form onSubmit={submitHandler}>
+                <label> Сообщение </label>
+                <input type="text" value={messageValue} onInput={(event) => setMessageValue(event.target.value)}/>
+                <label> Автор </label>
+                <input type="text" value={authorValue} onInput={(event) => setAuthorValue(event.target.value)}/>
+                <button type='submit'> Send</button>
+
+            </form>
+
 
             <h2 className='message_title'> Список входящих сообщений </h2>
 
             {messageList.map((item) => {
                 return (
                     <div>
-                        <p> {item} </p> <br/>
-
+                        <p> Текст сообщения: {item.text} </p> <br/>
+                        <p> Автор сообщения: {item.author} </p> <br/>
                     </div>
                 );
             })}
