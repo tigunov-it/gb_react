@@ -6,7 +6,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import TelegramIcon from '@mui/icons-material/Telegram';
 
-
 function Sidebar(props) {
 
     const [chatList, setChat] = useState([
@@ -38,7 +37,7 @@ function Sidebar(props) {
                         return (
                             <ListItem disablePadding key={item.id} className="message_body">
                                 <ListItemButton>
-                                    <ListItemText primary={item.name} />
+                                    <ListItemText primary={item.name}/>
                                     <TelegramIcon/>
                                 </ListItemButton>
                             </ListItem>
@@ -46,8 +45,10 @@ function Sidebar(props) {
                     })}
                 </List>
             </nav>
+
         </div>
     );
 }
+
 
 export default Sidebar;

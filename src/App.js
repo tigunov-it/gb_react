@@ -1,11 +1,13 @@
-import Message from "./components/Message";
+import Headerbar from "./components/Headerbar"
+import Footer from "./components/Footer"
 
 function App() {
 
     return (
         <div>
 
-            <Message> </Message>
+            <Headerbar/>
+            <Footer />
 
         </div>
     );
