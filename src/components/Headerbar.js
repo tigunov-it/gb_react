@@ -6,13 +6,19 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Route, Routes} from "react-router-dom";
-import HomePage from "../Pages/HomePage";
-import ProfilePage from "../Pages/ProfilePage";
-import ChatsPage from "../Pages/ChatsPage";
 import CustomLink from "./CustomLink";
+import {useContext, useState} from "react";
+import { ThemeContext, themes } from "./context"
+
 
 export default function ButtonAppBar() {
+
+    const [theme, setTheme] = useState(themes.light)
+
+    const toggleTheme = () => {
+        setTheme(prevState => prevState == themes.light ? themes.dark : themes.light)
+    }
+
     return (
         <Box sx={{flexGrow: 1}}>
             <AppBar position="static">
@@ -34,15 +40,12 @@ export default function ButtonAppBar() {
 
                     </Typography>
 
-                    <Button color="inherit">Login</Button>
+                   <ThemeContext.Provider value={theme}>
+                       <Button style={{background: theme.background, color: theme.text}} onClick={toggleTheme} color="inherit">Dark/Light</Button>
+                   </ThemeContext.Provider>
+
                 </Toolbar>
             </AppBar>
-
-            <Routes>
-                <Route path={'/profile'} element={<ProfilePage/>}> </Route>
-                <Route path={'/chats'} element={<ChatsPage/>}> </Route>
-                <Route exact path={'/'} element={<HomePage/>}> </Route>
-            </Routes>
 
         </Box>
     );

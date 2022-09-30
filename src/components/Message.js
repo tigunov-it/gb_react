@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 import './Message.css'
 import {Button} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
@@ -6,12 +6,29 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Sidebar from "./Sidebar";
 
-
 function Message() {
 
     const [messageValue, setMessageValue] = useState('');
     const [authorValue, setAuthorValue] = useState('');
-    const [messageList, setMessageList] = useState([]);
+    const [messageList, setMessageList] = useState([
+        {
+            id: 1,
+            text: 'Where are you?',
+            chatId: 1
+        },
+        {
+            id: 2,
+            text: 'Where are you?',
+            chatId: 2
+        },
+        {
+            id: 3,
+            text: 'Where are you?',
+            chatId: 3
+        },
+
+    ]);
+
     const inputRef = useRef(null);
 
     const submitHandler = (event) => {
