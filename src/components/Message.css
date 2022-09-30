@@ -1,0 +1,13 @@
+.messages {
+    background-color: antiquewhite;
+    width: 70%;
+}
+
+.message_body {
+    width: 70%;
+}
+
+.chat_body {
+    margin-top: 20px;
+    display: flex;
+}

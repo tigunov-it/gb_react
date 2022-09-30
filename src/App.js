@@ -1,17 +1,27 @@
-import './App.css';
-import Message from "./Message";
+import Headerbar from "./components/Headerbar"
+import Footer from "./components/Footer"
+import {Outlet, Route, Routes} from "react-router-dom";
+import ProfilePage from "./Pages/ProfilePage";
+import ChatsPage from "./Pages/ChatsPage";
+import MessagePage from "./Pages/MessagePage";
+import HomePage from "./Pages/HomePage";
+import * as React from "react";
 
-function App(props) {
-  const currentTime = Date.now();
-  return (<div className="App">
-    <header className="App-header">
-      My first React App
-      <h3 style={{border: '2px solid red'}}>Hello from React</h3>
-      <h4>Hello from {props.name}</h4>
-      <Message currentTime={currentTime} />
-    </header>
-  </div>
-  );
+function App() {
+
+    return (
+        <div>
+            <Headerbar/>
+            <Outlet/>
+            <Routes>
+                <Route path={'/profile'} element={<ProfilePage/>}> </Route>
+                <Route path={'/chats'} element={<ChatsPage/>}> </Route>
+                <Route path={'/messages'} element={<MessagePage/>}> </Route>
+                <Route exact path={'/'} element={<HomePage/>}> </Route>
+            </Routes>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
