@@ -1,25 +1,20 @@
+import {Route, Routes} from "react-router-dom";
+import Chats from "./Pages/Chats";
+import Messages from "./Pages/Messages";
 import Headerbar from "./components/Headerbar"
-import Footer from "./components/Footer"
-import {Outlet, Route, Routes} from "react-router-dom";
-import ProfilePage from "./Pages/ProfilePage";
-import ChatsPage from "./Pages/ChatsPage";
-import MessagePage from "./Pages/MessagePage";
-import HomePage from "./Pages/HomePage";
-import * as React from "react";
+import Profile from "./Pages/Profile";
+
 
 function App() {
 
     return (
         <div>
             <Headerbar/>
-            <Outlet/>
             <Routes>
-                <Route path={'/profile'} element={<ProfilePage/>}> </Route>
-                <Route path={'/chats'} element={<ChatsPage/>}> </Route>
-                <Route path={'/messages'} element={<MessagePage/>}> </Route>
-                <Route exact path={'/'} element={<HomePage/>}> </Route>
+                <Route path={'/'} element={<Chats/>} />
+                <Route path={'/messages/:id'} element={<Messages/>} />
+                <Route path={'/profile'} element={<Profile/>} />
             </Routes>
-            <Footer/>
         </div>
     );
 }
