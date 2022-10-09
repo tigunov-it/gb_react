@@ -13,9 +13,15 @@ const Messages = () => {
         const obj = {
             // id: Number(id),
             id: Date.now(),
-            text: text
+            text: text,
         }
-        dispatch({type: 'add', payload: obj})
+        dispatch({
+            type: 'add',
+            payload: obj,
+            meta: {
+                delayMs: 5000
+            }
+        })
     }
 
     return (
