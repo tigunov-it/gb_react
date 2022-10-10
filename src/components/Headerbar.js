@@ -30,6 +30,7 @@ export default function ButtonAppBar() {
 
                     <CustomLink to='/'> Home </CustomLink>
                     <CustomLink to='/profile'> Profile </CustomLink>
+                    <CustomLink to='/apidata'> ApiData </CustomLink>
 
                 </Typography>
 
