@@ -1,0 +1,1 @@
+export const firebaseSelector = state => state.user
